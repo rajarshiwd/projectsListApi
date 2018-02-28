@@ -5,9 +5,12 @@ const _ = require('lodash');
 var {mongoose} = require('./db/mongoose');
 var {ProjetList} = require('./models/projectlist');
 var {User} = require('./models/user');
+var cors = require('cors');
 
 var app = express();
 const port = process.env.PORT || 3000;
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
