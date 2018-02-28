@@ -15,12 +15,15 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/projects', (req, res) => {
+  console.log("hey I am called");
   var project = new ProjetList({
-    position: req.body.position,
+    positon: req.body.positon,
     name: req.body.name,
     cname: req.body.cname,
     symbol: req.body.symbol
   });
+
+  console.log(project);
 
   project.save().then((doc) => {
     res.send(doc);
@@ -30,6 +33,7 @@ app.post('/projects', (req, res) => {
 });
 
 app.get('/projects', (req, res) => {
+  console.log("hey I am called");
   ProjetList.find().then((projects) => {
     res.send({projects});
   }, (e) => {
@@ -57,7 +61,7 @@ app.get('/projects/:id', (req, res) => {
 
 app.patch('/projects/:id',  (req, res) => {
   var id = req.params.id;
-  var body = _.pick(req.body, ['position', 'name','cname','symbol']);
+  var body = _.pick(req.body, ['positon', 'name','cname','symbol']);
 
   if (!ObjectID.isValid(id)) {
     return res.status(404).send();
