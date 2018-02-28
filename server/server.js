@@ -15,7 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/projects', (req, res) => {
-  console.log("hey I am called");
+  console.log(req.body);
   var project = new ProjetList({
     positon: req.body.positon,
     name: req.body.name,
@@ -23,7 +23,7 @@ app.post('/projects', (req, res) => {
     symbol: req.body.symbol
   });
 
-  console.log(project);
+  //console.log(project);
 
   project.save().then((doc) => {
     res.send(doc);
